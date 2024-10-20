@@ -1,12 +1,11 @@
 
 import { RouterProivder, createBrowserRouter, parsePath } from 'react-router-dom'
 import HomePage from './pages/Home'
-import EventPages from './pages/Events';
+import EventPages , { loader as eventLoader} from './pages/Events';
 import NewEventPages from './pages/NewEvent';
 import EventDetailPages from './pages/EventDetail';
 import EventEditPages from './pages/EditEvent';
 import RootLayout from './pages/Root';
-import { Children } from 'react';
 import EventRootLayout from './pages/EventRoot';
 
 const router = createBrowserRouter([
@@ -15,7 +14,9 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       {
         path: 'event', element: <EventRootLayout />, children: [
-          { index: true, element: <EventPages /> },
+          {
+            index: true, element: <EventPages />, loader: eventLoader
+          },
           { path: ':eventId', element: <EventDetailPages /> },
           { path: 'new', element: <NewEventPages /> },
           { path: ':eventId/edit', element: <EventEditPages /> }
