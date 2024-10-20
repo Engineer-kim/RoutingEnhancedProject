@@ -5,7 +5,7 @@ import { parsePath, useParams, useParams } from "react-router-dom"
 
 function EventDetailPages() {
 
-    const useParams = useParams();
+    const params = useParams();
 
     return( <>
         <h1>EventDetailPages</h1>
