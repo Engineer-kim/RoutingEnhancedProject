@@ -2,12 +2,13 @@
 import { RouterProivder, createBrowserRouter, parsePath } from 'react-router-dom'
 import HomePage from './pages/Home'
 import EventPages, { loader as eventLoader } from './pages/Events';
-import NewEventPages , { action as newEventAction } from './pages/NewEvent';
+import NewEventPages from './pages/NewEvent';
 import EventDetailPages, { loader as eventDetailLoader, action as deleteAction } from './pages/EventDetail';
 import EventEditPages from './pages/EditEvent';
 import RootLayout from './pages/Root';
 import EventRootLayout from './pages/EventRoot';
 import ErrorPage from './pages/Error';
+import { action as manipulationEventAction  } from "./components/EventForm"
 
 const router = createBrowserRouter([
   {
@@ -27,14 +28,15 @@ const router = createBrowserRouter([
             children: [
               {
                 index: true,
-                element: <EventDetailPages />
+                element: <EventDetailPages />,
+                action: deleteAction
               },
               { path: 'edit', element: <EventEditPages />,
-                action: deleteAction
+                action: manipulationEventAction
                }
             ]
           },
-          { path: 'new', element: <NewEventPages />, action: newEventAction},
+          { path: 'new', element: <NewEventPages />, action: manipulationEventAction},
         ]
       }
     ],
